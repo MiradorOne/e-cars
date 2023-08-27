@@ -4,13 +4,15 @@
 - Code formatting with [Prettier](https://prettier.io)
 - Linting with [ESLint](https://eslint.org)
 - Static Types with [TypeScript](https://typescriptlang.org)
+- [Mongodb](https://www.mongodb.com/)
 - [Prisma](https://www.prisma.io/) ORM
 
-| Package    | Version |
-|------------|---------|
+| Package     | Version |
+|-------------|---------|
 | 🚀 React    | 18.2.0  |
 | 💿 Remix    | 1.6.7   |
 | 💨 Tailwind | 3.0.24  |
+| 🚀 Prisma   | 5.1.1   |
 
 
 ## Development
@@ -19,6 +21,14 @@ Start dev server:
 
 ```sh
 yarn dev
+```
+
+## Start MongoDB
+
+Run to create Mongodb container:
+
+```sh
+docker-compose up -d
 ```
 
 ## Deployment
