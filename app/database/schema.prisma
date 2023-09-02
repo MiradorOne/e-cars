@@ -10,10 +10,49 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum ROLE {
+  Admin
+  User
+}
+
+enum CATEGORY {
+  Review
+  Guides
+  News
+  Ranking
+  Other
+}
+
+type Image {
+  type String?
+  data String
+}
+
 model User {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   email     String   @unique
   password  String
+  role      ROLE     @default(User)
+}
+
+model Post {
+  id         String        @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt  DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
+  title      String
+  body       String
+  image      Image
+  featured   Boolean       @default(false)
+  views      Int           @default(0)
+  tags       String[]
+  category   PostCategory? @relation(fields: [categoryId], references: [id])
+  categoryId String?       @db.ObjectId
+}
+
+model PostCategory {
+  id    String   @id @default(auto()) @map("_id") @db.ObjectId
+  name  CATEGORY @unique @default(Other)
+  posts Post[]
 }

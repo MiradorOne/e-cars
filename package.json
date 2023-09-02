@@ -40,6 +40,7 @@
     "node": ">=14"
   },
   "prisma": {
-    "schema": "app/database/schema.prisma"
+    "schema": "app/database/schema.prisma",
+    "seed": "ts-node app/database/seed.ts"
   }
 }
