@@ -41,6 +41,7 @@ cp .env.example .env
 Seed database
 
 ```sh
+prisma db push
 prisma db seed
 ```
 
