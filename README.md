@@ -31,6 +31,19 @@ Run to create Mongodb container:
 docker-compose up -d
 ```
 
+Create .env with variables from .env.example
+
+```shell
+touch .env
+cp .env.example .env
+```
+
+Seed database
+
+```sh
+prisma db seed
+```
+
 ## Deployment
 
 First, build your app for production:
