@@ -6,7 +6,7 @@ const SvgMailBlack = (props: SVGProps<SVGSVGElement>) => (
     width="1em"
     height="1em"
     fill="none"
-    viewBox="0 0 18 16"
+    viewBox="0 0 18 10"
     {...props}
   >
     <path

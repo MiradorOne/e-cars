@@ -2,6 +2,8 @@ import React, { ComponentPropsWithoutRef, JSX } from "react";
 import { cva, VariantProps } from "class-variance-authority";
 import { cn } from "~/utils";
 
+type Intent = "homepage" | "aboutUs" | "howItWorks";
+
 interface BenefitsProps
   extends ComponentPropsWithoutRef<"div">,
     VariantProps<typeof BenefitsVariant> {
@@ -41,21 +43,18 @@ const Benefits = ({
   className,
   intent,
 }: BenefitsProps) => {
-  let margin;
-
-  switch (intent) {
-    case "homepage":
-      margin = "ml-2";
-      break;
-    case "aboutUs":
-      margin = "mt-4";
-      break;
-    case "howItWorks":
-      margin = "mt-6";
-      break;
-    default:
-      margin = "m-0";
-  }
+  const getIntentMargin = (intent: Intent) => {
+    switch (intent) {
+      case "homepage":
+        return "ml-2";
+      case "aboutUs":
+        return "mt-4";
+      case "howItWorks":
+        return "mt-6";
+      default:
+        return "m-0";
+    }
+  };
 
   return (
     <div className={cn(BenefitsVariant({ intent, className }))}>
@@ -66,7 +65,7 @@ const Benefits = ({
       >
         {children}
       </div>
-      <div className={margin}>
+      <div className={getIntentMargin(intent as Intent)}>
         <h3 className={"font-semibold"}>{heading}</h3>
         <p className={"mt-2"}>{text}</p>
       </div>

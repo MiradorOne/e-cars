@@ -4,7 +4,6 @@ import SvgSupport from "~/components/IconComponents/Support";
 import SvgProtection from "~/components/IconComponents/Protection";
 import SvgReviews from "~/components/IconComponents/Reviews";
 import { cva, VariantProps } from "class-variance-authority";
-import { cn } from "~/utils";
 
 interface DescriptionProps
   extends ComponentPropsWithoutRef<"div">,
@@ -26,7 +25,6 @@ const DescriptionVariant = cva("w-full flex justify-between ", {
         "min-[320px]:py-8",
         "min-[320px]:px-4",
       ],
-
       aboutUs: [
         "max-w-[1016px]",
         "min-[320px]:flex-col",
@@ -54,7 +52,7 @@ const Description = ({ className, intent }: DescriptionProps) => {
   const text: string =
     "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.";
   return (
-    <div className={cn(DescriptionVariant({ intent, className }))}>
+    <div className={DescriptionVariant({ intent, className })}>
       <Benefits
         intent={intent}
         heading={

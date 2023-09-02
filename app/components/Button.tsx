@@ -1,11 +1,12 @@
-import React, { ButtonHTMLAttributes, forwardRef } from "react";
+import React, { ButtonHTMLAttributes } from "react";
 import { VariantProps, cva } from "class-variance-authority";
 import { cn } from "~/utils";
 
 interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof ButtonVariants> {
-  isDisable?: boolean;
+  isDisabled?: boolean;
+  onClick?: () => void;
 }
 
 const ButtonVariants = cva(" text-center font-semibold duration-300", {
@@ -20,6 +21,7 @@ const ButtonVariants = cva(" text-center font-semibold duration-300", {
         "active:bg-[#3C7D46]",
       ],
       secondary: [
+        "place-content-center",
         "border-2 border-[#D1D1D1]",
         "bg-white",
         "hover:bg-gray-200",
@@ -38,7 +40,6 @@ const ButtonVariants = cva(" text-center font-semibold duration-300", {
       small: ["py-1.5", "text-sm", "px-3"],
       medium: ["py-3", "text-base"],
     },
-
     secondaryRadius: {
       top: "rounded-t-lg",
       bot: "rounded-b-lg",
@@ -49,17 +50,21 @@ const ButtonVariants = cva(" text-center font-semibold duration-300", {
     size: "small",
   },
 });
-const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, size, intent, secondaryRadius, width, ...props }, ref) => {
-    return (
-      <button
-        ref={ref}
-        {...props}
-        className={cn(
-          ButtonVariants({ intent, size, className, secondaryRadius, width })
-        )}
-      />
-    );
-  }
+const Button = ({
+  className,
+  intent,
+  size,
+  children,
+  isDisabled,
+  secondaryRadius,
+  onClick,
+}: ButtonProps) => (
+  <button
+    onClick={onClick}
+    disabled={isDisabled}
+    className={cn(ButtonVariants({ intent, size, className, secondaryRadius }))}
+  >
+    {children}
+  </button>
 );
-export { Button, ButtonVariants };
+export { Button };
