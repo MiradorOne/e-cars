@@ -6,8 +6,8 @@ import BlogPage from "~/pages/BlogPage";
 export default function Index() {
   return (
     <Layout>
-      {/*<HomePage />*/}
-      <BlogPage />
+      <HomePage />
+      {/*<BlogPage />*/}
     </Layout>
   );
 }
