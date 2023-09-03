@@ -9,11 +9,25 @@ module.exports = {
         gray: {
           mainDark: "#2C2926",
         },
+        orange:{
+          mainOrange: "#E49A49",
+        }
       },
+      padding:{
+        '108px':"108px"
+      },
+      gridTemplateColumns:{
+        "blog": "minmax(320px, 704px) minmax(320px, 392px)"
+      },
+      gridTemplateRows:{
+        "featuredBlog": ""
+      }
     },
     boxShadow: {
+      "21l":
+          "0px 8px 16px 0px rgba(28, 30, 34, 0.08), 0px 1px 2px 0px rgba(28, 30, 34, 0.08);",
       "3xl":
-        "0px 12px 32px 0px rgba(28, 30, 34, 0.08), 0px 1px 2px 0px rgba(28, 30, 34, 0.04)",
+          "0px 12px 32px 0px rgba(28, 30, 34, 0.08), 0px 1px 2px 0px rgba(28, 30, 34, 0.04)",
     },
   },
   plugins: [],
