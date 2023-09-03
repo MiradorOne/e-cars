@@ -1,18 +1,20 @@
 import type { Prisma } from "@prisma/client";
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { prisma } from "~/utils/prisma.server";
 
 export const getAllPosts = async () => await prisma.post.findMany();
 
 export const getAllCategories = async () =>
   await prisma.postCategory.findMany({
-    select: { name: true },
+    select: { name: true, id: true },
   });
 
 export const getAllPostsByCategory = async (
   category: Prisma.PostCategoryWhereInput["name"]
-) => await prisma.post.findMany({ where: { category: { name: category } } });
+) => {
+  return prisma.post.findMany({
+    where: { category: { name: category } },
+  });
+};
 
 export const getPostById = async (id: string) =>
   await prisma.post.findUnique({ where: { id } });

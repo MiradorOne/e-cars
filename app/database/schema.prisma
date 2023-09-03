@@ -16,11 +16,11 @@ enum ROLE {
 }
 
 enum CATEGORY {
-  Review
-  Guides
-  News
-  Ranking
-  Other
+  review
+  guides
+  news
+  ranking
+  other
 }
 
 type Image {
@@ -53,6 +53,6 @@ model Post {
 
 model PostCategory {
   id    String   @id @default(auto()) @map("_id") @db.ObjectId
-  name  CATEGORY @unique @default(Other)
+  name  CATEGORY @unique @default(other)
   posts Post[]
 }
