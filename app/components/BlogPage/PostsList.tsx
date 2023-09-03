@@ -1,15 +1,17 @@
-import React, { ComponentPropsWithoutRef } from "react";
+import React, { useContext } from "react";
+import { BlogContext } from "~/routes/blog";
 import Post from "~/components/BlogPage/Post";
-import { Prisma } from "@prisma/client";
+import type { Prisma } from "@prisma/client";
 
-interface PostsListProps {
-  posts: Prisma.PostCreateInput[];
+interface Props {
+  data: Prisma.PostCreateInput[];
 }
-const PostsList = ({ posts }: PostsListProps) => {
-  console.log(posts);
+
+const PostsList = ({ data }: Props) => {
+  const categories = useContext(BlogContext);
   return (
     <div className="grid grid-cols-2 gap-6 [&>*:first-child]:col-span-2">
-      {posts.map((post) => (
+      {data.map((post) => (
         <Post key={post.id} body={post.body} image={post.image.data} />
       ))}
     </div>
