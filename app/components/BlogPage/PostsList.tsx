@@ -8,12 +8,11 @@ interface Props {
 }
 
 const PostsList = ({ data }: Props) => {
-  const categories = useContext(BlogContext);
   return (
-    <div className="grid grid-cols-2 gap-6 [&>*:first-child]:col-span-2">
-      {data.map((post) => (
-        <Post key={post.id} body={post.body} image={post.image.data} />
-      ))}
+    <div className="grid grid-cols-2 gap-6 min-[320px]:grid-cols-1 md:grid-cols-2 lg:[&>*:first-child]:col-span-2">
+      {data.map((post) =>
+        post.featured === false ? <Post data={post} /> : null
+      )}
     </div>
   );
 };

@@ -13,6 +13,7 @@ export const BlogContext = createContext<Prisma.PostCategoryWhereInput[]>([]);
 
 export default function Blog() {
   const data = useLoaderData<typeof loader>();
+
   return (
     <Layout>
       <BlogContext.Provider value={data}>
