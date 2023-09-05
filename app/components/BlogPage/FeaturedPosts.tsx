@@ -1,14 +1,20 @@
 import React from "react";
-import car from "~/components/icons/Rectangle 2.png";
-import PostTag from "~/components/BlogPage/PostTag";
 import Post from "~/components/BlogPage/Post";
 
-const FeaturedPosts = () => {
+import { Prisma } from "@prisma/client";
+
+interface Props {
+  data: Prisma.PostCreateInput[];
+}
+
+const FeaturedPosts = ({ data }: Props) => {
   return (
-    <div className="[&>*:not(:first-of-type)]:bg-amber-500">
-      {/*<Post />*/}
-      {/*<Post />*/}
-      {/*<Post />*/}
+    <div className=" gap-6 md:grid md:grid-cols-2 lg:block lg:[&>*:not(:first-of-type)]:flex">
+      {data.map((post, index) =>
+        post.featured === true ? (
+          <Post data={post} isMiniature={index !== 0} />
+        ) : null
+      )}
     </div>
   );
 };
