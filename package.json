@@ -15,7 +15,6 @@
     "start": "remix-serve build"
   },
   "dependencies": {
-
     "@prisma/client": "^5.1.1",
     "@remix-run/node": "^1.6.7",
     "@remix-run/react": "^1.6.7",
@@ -25,6 +24,7 @@
     "classnames": "^2.3.2",
     "clsx": "^2.0.0",
     "react": "^18.2.0",
+    "react-date-object": "^2.1.7",
     "react-dom": "^18.2.0",
     "tailwind-merge": "^1.14.0"
   },

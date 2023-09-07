@@ -21,6 +21,9 @@ module.exports = {
       },
       gridTemplateRows:{
         "featuredBlog": ""
+      },
+      maxWidth:{
+        "article": "808px"
       }
     },
     boxShadow: {
