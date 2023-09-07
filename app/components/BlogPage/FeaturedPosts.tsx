@@ -12,7 +12,11 @@ const FeaturedPosts = ({ data }: Props) => {
     <div className=" gap-6 md:grid md:grid-cols-2 lg:block lg:[&>*:not(:first-of-type)]:flex">
       {data.map((post, index) =>
         post.featured === true ? (
-          <Post data={post} isMiniature={index !== 0} />
+          <Post
+            data={post}
+            isMiniature={index !== 0}
+            isFeatured={post.featured}
+          />
         ) : null
       )}
     </div>

@@ -3,13 +3,13 @@ import { json } from "@remix-run/node";
 import { Layout } from "~/components/layout";
 import { getAllCategories } from "~/services/PostService";
 import React, { createContext } from "react";
-import type { Prisma } from "@prisma/client";
+import type { CATEGORY } from "@prisma/client";
 
 export async function loader() {
   return json(await getAllCategories());
 }
 
-export const BlogContext = createContext<Prisma.PostCategoryWhereInput[]>([]);
+export const BlogContext = createContext<{ id: string; name: CATEGORY }[]>([]);
 
 export default function Blog() {
   const data = useLoaderData<typeof loader>();

@@ -20,5 +20,6 @@ export async function loader({ params }: LoaderArgs) {
 
 export default function BlogCategory() {
   const data = useLoaderData<typeof loader>();
+
   return <BlogPage posts={data} />;
 }

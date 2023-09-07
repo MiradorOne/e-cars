@@ -1,13 +1,12 @@
 import React from "react";
 
-interface PropsPostTag {
-  name: string;
-  id: string;
+interface PostTagProps {
+  categoryName: string;
 }
 
-const PostTag = ({ category: { name } }: { category: PropsPostTag }) => {
-  const getIntentMargin = (name: string) => {
-    switch (name) {
+const PostTag = ({ categoryName }: PostTagProps) => {
+  const getIntentMargin = (categoryName: string) => {
+    switch (categoryName) {
       case "review":
         return "rounded w-fit px-1.5 py-0.5 text-xs bg-[#eeeafe] text-[#603FE2]";
       case "guides":
@@ -24,9 +23,11 @@ const PostTag = ({ category: { name } }: { category: PropsPostTag }) => {
   };
 
   return (
-    <p className={getIntentMargin(name)}>
-      {name.charAt(0).toUpperCase() + name.slice(1)}
-    </p>
+    <div>
+      <p className={getIntentMargin(categoryName)}>
+        {categoryName.charAt(0).toUpperCase() + categoryName.slice(1)}
+      </p>
+    </div>
   );
 };
 

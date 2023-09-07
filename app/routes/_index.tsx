@@ -6,7 +6,6 @@ export default function Index() {
   return (
     <Layout>
       <HomePage />
-      {/*<Blog />*/}
     </Layout>
   );
 }
