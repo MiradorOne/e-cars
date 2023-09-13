@@ -1,12 +1,10 @@
 import React from "react";
 import Post from "~/components/BlogPage/Post";
-
 import { Prisma } from "@prisma/client";
 
 interface Props {
   data: Prisma.PostCreateInput[];
 }
-
 const FeaturedPosts = ({ data }: Props) => {
   return (
     <div className=" gap-6 md:grid md:grid-cols-2 lg:block lg:[&>*:not(:first-of-type)]:flex">
@@ -22,5 +20,4 @@ const FeaturedPosts = ({ data }: Props) => {
     </div>
   );
 };
-
 export default FeaturedPosts;

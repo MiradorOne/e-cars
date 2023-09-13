@@ -7,5 +7,4 @@ interface IconProps {
 const Icon = ({ variant }: IconProps) => {
   return <div></div>;
 };
-
 export default Icon;

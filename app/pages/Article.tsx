@@ -1,7 +1,5 @@
 import React from "react";
-
 import PostTag from "~/components/BlogPage/PostTag";
-
 import CalendarSvg from "~/components/IconComponents/CalendarSvg";
 import ViewsSvg from "~/components/IconComponents/ViewsSvg";
 import TagsSvg from "~/components/IconComponents/TagsSvg";
@@ -12,7 +10,6 @@ import {
 } from "~/components/IconComponents";
 import LinkedInSvg from "~/components/IconComponents/LinkedInSvg";
 import { Button } from "~/components/Button";
-
 import { useParams } from "@remix-run/react";
 
 type Image = {
@@ -32,15 +29,12 @@ interface ArticleProps {
   updatedAt: string;
   views: number;
 }
-
 const Article = ({
   body,
-
   createdAt,
   image,
   tags,
   title,
-
   views,
 }: ArticleProps) => {
   const creationDate = new Date(createdAt);
@@ -136,5 +130,4 @@ const Article = ({
     </div>
   );
 };
-
 export default Article;

@@ -6,7 +6,6 @@ import type { Prisma } from "@prisma/client";
 interface Props {
   posts: Prisma.PostCreateInput[];
 }
-
 const BlogPage = ({ posts }: Props) => {
   return (
     <div className="grid grid-cols-1  lg:grid-cols-blog lg:gap-x-32 ">
@@ -15,5 +14,4 @@ const BlogPage = ({ posts }: Props) => {
     </div>
   );
 };
-
 export default BlogPage;

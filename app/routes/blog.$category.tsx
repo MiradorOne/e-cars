@@ -17,7 +17,6 @@ export async function loader({ params }: LoaderArgs) {
   }
   return json(await getAllPostsByCategory(category as $Enums.CATEGORY));
 }
-
 export default function BlogCategory() {
   const data = useLoaderData<typeof loader>();
 

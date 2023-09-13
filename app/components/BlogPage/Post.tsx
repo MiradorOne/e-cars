@@ -9,7 +9,6 @@ import { useParams } from "@remix-run/react";
 interface PostProps extends Prisma.PostCreateInput {
   categoryId?: string;
 }
-
 const Post = ({
   data: { body, image, categoryId, title },
   isFeatured,
@@ -20,7 +19,6 @@ const Post = ({
   data: PostProps;
 }) => {
   const categories = useContext(BlogContext);
-
   const currentCategory = categories.find(
     (category) => category.id === categoryId
   );
@@ -39,12 +37,10 @@ const Post = ({
         <PostTag
           categoryName={currentCategory ? currentCategory.name : category!}
         />
-
         <h2 className=" font-semibold">{title}</h2>
         {!isFeatured ? <p>{body}</p> : null}
       </div>
     </div>
   );
 };
-
 export default Post;

@@ -8,9 +8,7 @@ import type { CATEGORY } from "@prisma/client";
 export async function loader() {
   return json(await getAllCategories());
 }
-
 export const BlogContext = createContext<{ id: string; name: CATEGORY }[]>([]);
-
 export default function Blog() {
   const data = useLoaderData<typeof loader>();
 
@@ -23,7 +21,6 @@ export default function Blog() {
             Company and car market news, as well as car selection guides and car
             reviews from our authors.
           </p>
-
           <div className="flex w-[370px] justify-between ">
             <h3 className="font-semibold">Categories:</h3>
             <Link
