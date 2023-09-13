@@ -33,7 +33,7 @@ const Post = ({
           isMiniature ? "rounded-t-lg lg:max-w-[160px]" : "rounded-t-lg"
         }
         src={image.data}
-        alt=""
+        alt="#"
       />
       <div className="p-4">
         <PostTag

@@ -7,6 +7,7 @@ interface ButtonProps
     VariantProps<typeof ButtonVariants> {
   isDisabled?: boolean;
   onClick?: () => void;
+  type?: "submit" | "reset" | "button";
 }
 
 const ButtonVariants = cva(" text-center font-semibold duration-300", {
@@ -22,7 +23,7 @@ const ButtonVariants = cva(" text-center font-semibold duration-300", {
       ],
       secondary: [
         "place-content-center",
-        "border-2 border-[#D1D1D1]",
+        "border border-[#D1D1D1]",
         "bg-white",
         "hover:bg-gray-200",
         "py-3.5",
@@ -58,11 +59,16 @@ const Button = ({
   isDisabled,
   secondaryRadius,
   onClick,
+  width,
+  type,
 }: ButtonProps) => (
   <button
+    type={type}
     onClick={onClick}
     disabled={isDisabled}
-    className={cn(ButtonVariants({ intent, size, className, secondaryRadius }))}
+    className={cn(
+      ButtonVariants({ intent, size, className, secondaryRadius, width })
+    )}
   >
     {children}
   </button>

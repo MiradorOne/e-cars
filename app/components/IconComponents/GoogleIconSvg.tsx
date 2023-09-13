@@ -1,6 +1,6 @@
 import * as React from "react";
 import type { SVGProps } from "react";
-const SvgHelpHeader = (props: SVGProps<SVGSVGElement>) => (
+const GoogleIconSvg = (props: SVGProps<SVGSVGElement>) => (
   <svg
     width="20"
     height="20"
@@ -38,4 +38,4 @@ const SvgHelpHeader = (props: SVGProps<SVGSVGElement>) => (
     </defs>
   </svg>
 );
-export default SvgHelpHeader;
+export default GoogleIconSvg;

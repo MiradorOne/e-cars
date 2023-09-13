@@ -111,7 +111,7 @@ const Article = ({
           </div>
         </div>
       </div>
-      <form action="" className="mt-8 rounded-lg bg-[#F6F5F4] p-8">
+      <form action="  " className="mt-8 rounded-lg bg-[#F6F5F4] p-8">
         <h2 className="mb-3 text-[22px] font-semibold">Stay up to date</h2>
         <p className="mb-4 text-sm">
           Don't miss the latest news, reviews and guides from our experts. Get

@@ -13,7 +13,7 @@ export const BlogContext = createContext<{ id: string; name: CATEGORY }[]>([]);
 
 export default function Blog() {
   const data = useLoaderData<typeof loader>();
-
+  console.log(data);
   return (
     <Layout>
       <BlogContext.Provider value={data}>
