@@ -6,7 +6,7 @@ const SvgEmailHeader = (props: SVGProps<SVGSVGElement>) => (
     width="1em"
     height="1em"
     fill="none"
-    viewBox="0 0 14 12"
+    viewBox="0 -1 14 12"
     {...props}
   >
     <path

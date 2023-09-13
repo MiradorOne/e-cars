@@ -35,17 +35,24 @@ export const getPostById = async (id: string) =>
 export const createPost = async (postArgs: CreatePostArgs) => {
   createPostInputSchema.parse(postArgs);
 
-  const { title, body, tags, featured = false, category, image } = postArgs;
+  const {
+    postTitle,
+    editorBody,
+    tags,
+    featured = false,
+    category,
+    postImage,
+  } = postArgs;
 
   try {
     return prisma.post.create({
       data: {
-        title,
-        body,
+        title: postTitle,
+        body: editorBody,
         tags,
         featured,
         image: {
-          data: image,
+          data: postImage,
         },
         category: {
           connect: {

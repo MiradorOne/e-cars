@@ -10,7 +10,9 @@ import {
 } from "~/components/IconComponents";
 import LinkedInSvg from "~/components/IconComponents/LinkedInSvg";
 import { Button } from "~/components/Button";
-import { useParams } from "@remix-run/react";
+import ArticleBody from "~/components/BlogPage/ArticleBody";
+import Input from "~/components/Input";
+import Heading from "~/components/Heading";
 
 type Image = {
   type: null;
@@ -28,6 +30,7 @@ interface ArticleProps {
   title: string;
   updatedAt: string;
   views: number;
+  category: string | undefined;
 }
 const Article = ({
   body,
@@ -36,15 +39,15 @@ const Article = ({
   tags = [],
   title,
   views,
+  category,
 }: ArticleProps) => {
   const creationDate = new Date(createdAt);
-  const { category } = useParams();
 
   return (
     <div className=" mx-auto   my-0 w-full  max-w-[1224px] ">
-      <h1 className="font-semibold min-[320px]:text-[34px] lg:text-[44px]">
+      <Heading className="mb-4" intent="maxsize44">
         {title}
-      </h1>
+      </Heading>
       <div className=" flex	flex-wrap items-center">
         <div className="mr-6">
           <PostTag categoryName={category!} />
@@ -75,11 +78,11 @@ const Article = ({
         </div>
       </div>
       <img
-        className="w-full min-[320px]:mt-6 md:mt-8"
+        className="w-full min-[320px]:mb-6 min-[320px]:mt-6 min-[320px]:max-h-[192px] md:mb-8 md:mt-8 md:max-h-[394px] lg:max-h-[450px]"
         src={image.data}
         alt=""
       />
-      <p>{body}</p>
+      <ArticleBody body={body} />
       <div className="mt-8 flex h-11 w-full items-center justify-center rounded-lg bg-[#F6F5F4]">
         <div className="flex w-8/12 justify-between">
           <div>Share:</div>
@@ -109,17 +112,20 @@ const Article = ({
           </div>
         </div>
       </div>
-      <form action="" className="mt-8 rounded-lg bg-[#F6F5F4] p-8">
+      <form
+        action=""
+        className="mt-8 rounded-lg bg-[#F6F5F4] min-[320px]:p-4 md:p-8"
+      >
         <h2 className="mb-3 text-[22px] font-semibold">Stay up to date</h2>
         <p className="mb-4 text-sm">
           Don't miss the latest news, reviews and guides from our experts. Get
           updates in your inbox. No spam.
         </p>
-        <div className="md:flex">
-          <input
-            type="text"
-            placeholder="email"
-            className="h-12 w-full border-[#D1D1D1] px-3 py-4 placeholder:pl-3 md:w-[82%]"
+        <div className="w-full justify-between md:flex">
+          <Input
+            type="email"
+            placeholder="Email"
+            className="h-12 w-full border-[#D1D1D1] px-3 py-4  placeholder:pl-3"
           />
           <Button
             type="button"
