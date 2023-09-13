@@ -32,7 +32,7 @@ export { default as TagsSvg } from "./TagsSvg";
 export { default as ViewsSvg } from "./ViewsSvg";
 export { default as CopyLinkSvg } from "./CopyLinkSvg";
 export { default as CalendarSvg } from "./CalendarSvg";
+export { default as CanadaSvg } from "./CanadaSvg";
 export { default as GoogleIconSvg } from "./GoogleIconSvg";
 export { default as LeftArrow } from "./LeftArrow";
-export { default as CanadaSvg } from "./CanadaSvg";
 export { default as SvgArrowLeft } from "./SvgArrowLeft";
