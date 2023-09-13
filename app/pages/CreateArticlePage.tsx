@@ -1,11 +1,12 @@
 import React from "react";
 import CreateArticle from "~/components/BlogPage/CreateArticle";
 
-const HomePage = () => {
+const CreateArticlePage = () => {
   return (
-    <div className="mx-auto w-full max-w-[1224px]">
+    <div>
       <CreateArticle />
     </div>
   );
 };
-export default HomePage;
+
+export default CreateArticlePage;
