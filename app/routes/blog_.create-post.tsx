@@ -1,17 +1,17 @@
 import React from "react";
-import { Layout } from "~/components/layout";
-import CreateArticle from "~/components/BlogPage/CreateArticle";
-import type { ActionArgs } from "@remix-run/node";
-import { createPost } from "~/services/PostService";
+import { ZodError } from "zod";
+import { useActionData } from "@remix-run/react";
 import { redirect } from "@remix-run/node";
 import type { $Enums } from "@prisma/client";
-import { useActionData } from "@remix-run/react";
-import { ZodError } from "zod";
+import type { ActionArgs } from "@remix-run/node";
+import { createPost } from "~/services/PostService";
+import { Layout } from "~/components/layout";
+import CreateArticle from "~/components/BlogPage/CreateArticle";
 
 export async function action({ request }: ActionArgs) {
   const formData = await request.formData();
 
-  const [title, category, body, featured, postImage] = [
+  const [postTitle, category, editorBody, featured, postImage] = [
     String(formData.get("postTitle")),
     formData.get("category") as $Enums.CATEGORY,
     String(formData.get("editorBody")),
@@ -21,11 +21,11 @@ export async function action({ request }: ActionArgs) {
 
   try {
     const result = await createPost({
-      title,
+      postTitle,
       category,
-      body,
+      editorBody,
       featured: Boolean(featured),
-      image: postImage,
+      postImage,
     });
     if (!result) {
       return new Error("Something went wrong");
@@ -42,7 +42,6 @@ export async function action({ request }: ActionArgs) {
     });
   }
 }
-
 export default function CreatePost() {
   const errors = useActionData();
   return (
