@@ -1,9 +1,11 @@
-import React, { ComponentPropsWithoutRef } from "react";
+import type { ComponentPropsWithoutRef } from "react";
+import React from "react";
 import Benefits from "~/components/Description/Benefits";
 import SvgSupport from "~/components/IconComponents/Support";
 import SvgProtection from "~/components/IconComponents/Protection";
 import SvgReviews from "~/components/IconComponents/Reviews";
-import { cva, VariantProps } from "class-variance-authority";
+import type { VariantProps } from "class-variance-authority";
+import { cva } from "class-variance-authority";
 
 interface DescriptionProps
   extends ComponentPropsWithoutRef<"div">,

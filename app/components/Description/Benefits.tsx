@@ -1,5 +1,7 @@
-import React, { ComponentPropsWithoutRef, JSX } from "react";
-import { cva, VariantProps } from "class-variance-authority";
+import type { ComponentPropsWithoutRef, JSX } from "react";
+import React from "react";
+import type { VariantProps } from "class-variance-authority";
+import { cva } from "class-variance-authority";
 import { cn } from "~/utils";
 
 type Intent = "homepage" | "aboutUs" | "howItWorks";

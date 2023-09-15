@@ -8,15 +8,14 @@
 - [Prisma](https://www.prisma.io/) ORM
 
 | Package     | Version |
-|-------------|---------|
+| ----------- | ------- |
 | 🚀 React    | 18.2.0  |
 | 💿 Remix    | 1.6.7   |
 | 💨 Tailwind | 3.0.24  |
 | 🚀 Prisma   | 5.1.1   |
 
-
 ## Development
-      
+
 Start dev server:
 
 ```sh

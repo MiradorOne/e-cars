@@ -1,8 +1,8 @@
-version: '3.8'
+version: "3.8"
 
 services:
   mongo:
-    image: 'bitnami/mongodb:latest'
+    image: "bitnami/mongodb:latest"
     ports:
       - 27017:27017
     restart: always
@@ -12,7 +12,7 @@ services:
       - MONGODB_ROOT_PASSWORD=pass
       - MONGODB_REPLICA_SET_KEY=replicasetkey
     volumes:
-      - 'mongodb:/bitnami/mongodb'
+      - "mongodb:/bitnami/mongodb"
 
 volumes:
   mongodb:
