@@ -1,8 +1,8 @@
 import React from "react";
-import BlogPage from "~/pages/BlogPage";
 import { json } from "@remix-run/node";
 import { getAllPosts } from "~/services/PostService";
 import { useLoaderData } from "@remix-run/react";
+import BlogPage from "~/pages/BlogPage";
 
 export async function loader() {
   return json(await getAllPosts());

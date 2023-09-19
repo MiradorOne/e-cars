@@ -8,7 +8,7 @@ interface Props {
 }
 const BlogPage = ({ posts }: Props) => {
   return (
-    <div className="grid grid-cols-1  lg:grid-cols-blog lg:gap-x-32 ">
+    <div className="mx-auto grid w-full  max-w-[1224px]   grid-cols-1 lg:grid-cols-blog lg:gap-x-32">
       <PostsList data={posts} />
       <FeaturedPosts data={posts} />
     </div>

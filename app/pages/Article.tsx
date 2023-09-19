@@ -67,7 +67,11 @@ const Article = ({
           <span className="mr-2">
             <TagsSvg />
           </span>
-          <span>{tags.map((tag) => tag + "," + " ")} views</span>
+          <span>
+            {tags.map((tag, index) =>
+              index + 1 !== tags.length ? `${tag}, ` : `${tag}`
+            )}
+          </span>
         </div>
       </div>
       <img
