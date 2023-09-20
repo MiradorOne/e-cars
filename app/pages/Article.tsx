@@ -120,7 +120,7 @@ const Article = ({
         <div className="md:flex">
           <input
             type="text"
-            placeholder="email"
+            placeholder="Email"
             className="h-12 w-full border-[#D1D1D1] px-3 py-4 placeholder:pl-3 md:w-[82%]"
           />
           <Button

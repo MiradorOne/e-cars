@@ -36,14 +36,16 @@ const LoginPage = () => {
             </Link>
           }
         />
-        <Button intent="primary" width="full" size="medium">
+        <Button intent="primary" width="full" size="medium" className="mt-6">
           Login
         </Button>
       </form>
       <div className=" mt-6 text-center	text-sm font-semibold">
         <p className="mb-6">
           Don’t have an account?
-          <span className="text-green-800"> Sign Up</span>
+          <Link to="/signup" className="text-green-800">
+            Sign Up
+          </Link>
         </p>
       </div>
       <GoogleAuth />

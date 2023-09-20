@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import Heading from "~/components/Heading";
 import FormInput from "~/components/Authorization/FormInput";
 import { Button } from "~/components/Button";
 import { LeftArrowSvg } from "~/components/IconComponents";
 import { Link } from "@remix-run/react";
+import { ResetContext } from "~/routes/_auth.forgot";
 
 const ForgotPage = () => {
+  const { email, setEmail } = useContext(ResetContext);
   const onChangeEmailHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
     console.log(e.target.value);
   };
+
   return (
     <>
       <Heading intent="maxsize32">Forgot password</Heading>
@@ -19,7 +23,13 @@ const ForgotPage = () => {
         label="Email address"
         type="email"
       />
-      <Button intent="primary" size="medium" width="full" className="mt-6">
+      <Button
+        intent="primary"
+        size="medium"
+        width="full"
+        className="mt-6"
+        type="submit"
+      >
         Reset password
       </Button>
       <p className=" mt-6 flex items-center justify-center text-green-800">

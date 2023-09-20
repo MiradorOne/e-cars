@@ -17,7 +17,7 @@ export default function Blog() {
   return (
     <Layout>
       <BlogContext.Provider value={data}>
-        <div className="min-[320px]:px-4 min-[320px]:py-8 md:px-8 md:py-10 lg:px-108px lg:py-12">
+        <div className="mx-auto max-w-[1224px] min-[320px]:px-4 min-[320px]:py-8 md:px-8 md:py-10 lg:px-0 lg:py-12">
           <h1 className="text-[44px] font-semibold">Blog & News</h1>
           <p className="mt-4">
             Company and car market news, as well as car selection guides and car

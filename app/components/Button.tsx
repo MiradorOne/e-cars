@@ -39,16 +39,26 @@ const ButtonVariants = cva(" text-center font-semibold duration-300", {
     },
     size: {
       small: ["py-1.5", "text-sm", "px-3"],
-      medium: ["py-3", "text-base"],
+      medium: ["py-3", "text-base px-6"],
     },
     secondaryRadius: {
       top: "rounded-t-lg",
       bot: "rounded-b-lg",
     },
+    height: {
+      small: ["h-9"],
+      medium: ["h-12"],
+    },
+    fontSize: {
+      small: ["text-sm"],
+      medium: ["text-base"],
+    },
   },
   defaultVariants: {
     intent: "primary",
     size: "small",
+    height: "medium",
+    fontSize: "medium",
   },
 });
 const Button = ({
@@ -61,13 +71,23 @@ const Button = ({
   onClick,
   width,
   type,
+  height,
+  fontSize,
 }: ButtonProps) => (
   <button
     type={type}
     onClick={onClick}
     disabled={isDisabled}
     className={cn(
-      ButtonVariants({ intent, size, className, secondaryRadius, width })
+      ButtonVariants({
+        intent,
+        size,
+        className,
+        secondaryRadius,
+        width,
+        height,
+        fontSize,
+      })
     )}
   >
     {children}

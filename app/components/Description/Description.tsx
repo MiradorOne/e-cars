@@ -17,12 +17,12 @@ const DescriptionVariant = cva("w-full flex justify-between ", {
         "max-w-[1224px]",
         "justify-between",
         "lg:p-10",
-        "md:py-10",
-        "md:px-8",
+        "lg:py-10",
+        "lg:px-8",
         "lg:shadow-3xl",
         "lg:rounded-2xl",
         "min-[320px]:flex-col",
-        "md:flex-row",
+        "lg:flex-row",
         "min-[320px]:py-8",
         "min-[320px]:px-4",
       ],
@@ -53,44 +53,49 @@ const Description = ({ className, intent }: DescriptionProps) => {
   const text: string =
     "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.";
   return (
-    <div className={DescriptionVariant({ intent, className })}>
-      <Benefits
-        intent={intent}
-        heading={
-          intent === "howItWorks"
-            ? "Find a car"
-            : "Professional approach to clients"
-        }
-        text={text}
-        children={intent === "howItWorks" ? "1" : <SvgSupport />}
-      />
-      <Benefits
-        intent={intent}
-        heading={
-          intent === "howItWorks"
-            ? "Extensive inspection"
-            : "Protect all payments"
-        }
-        text={text}
-        children={intent === "howItWorks" ? "2" : <SvgProtection />}
-      />
-      <Benefits
-        intent={intent}
-        heading={
-          intent === "howItWorks" ? "Extensive inspection" : "Safe Buying"
-        }
-        text={text}
-        children={intent === "howItWorks" ? "3" : <SvgReviews />}
-      />
-      {intent === "howItWorks" ? (
+    <>
+      <div className={DescriptionVariant({ intent, className })}>
         <Benefits
           intent={intent}
-          heading="Delivery and support"
+          heading={
+            intent === "howItWorks"
+              ? "Find a car"
+              : "Professional approach to clients"
+          }
           text={text}
-          children={"4"}
+          children={intent === "howItWorks" ? "1" : <SvgSupport />}
         />
+        <Benefits
+          intent={intent}
+          heading={
+            intent === "howItWorks"
+              ? "Extensive inspection"
+              : "Protect all payments"
+          }
+          text={text}
+          children={intent === "howItWorks" ? "2" : <SvgProtection />}
+        />
+        <Benefits
+          intent={intent}
+          heading={
+            intent === "howItWorks" ? "Extensive inspection" : "Safe Buying"
+          }
+          text={text}
+          children={intent === "howItWorks" ? "3" : <SvgReviews />}
+        />
+        {intent === "howItWorks" ? (
+          <Benefits
+            intent={intent}
+            heading="Delivery and support"
+            text={text}
+            children={"4"}
+          />
+        ) : null}
+      </div>
+      {intent === "homepage" ? (
+        <hr className="min-[320px]:mx-[-16px] min-[320px]:block md:mx-[-32px] lg:hidden" />
       ) : null}
-    </div>
+    </>
   );
 };
 

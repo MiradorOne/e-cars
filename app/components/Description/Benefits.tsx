@@ -12,7 +12,7 @@ interface BenefitsProps
   text: string;
 }
 
-const BenefitsVariant = cva("flex text-sm  md:mt-0 items-center ", {
+const BenefitsVariant = cva("flex text-sm  lg:mt-0 items-center ", {
   variants: {
     intent: {
       homepage: [
@@ -60,14 +60,20 @@ const Benefits = ({
     <div className={cn(BenefitsVariant({ intent, className }))}>
       <div
         className={
-          'font-semibold" rounded-full bg-orange-mainOrange  p-4 text-lg leading-3'
+          'font-semibold" rounded-full bg-orange-mainOrange  p-4 text-lg leading-3 '
         }
       >
         {children}
       </div>
       <div className={getIntentMargin(intent as Intent)}>
         <h3 className={"font-semibold"}>{heading}</h3>
-        <p className={"mt-2"}>{text}</p>
+        <p
+          className={
+            intent === "howItWorks" ? "mx-auto mt-2 w-[78%]" : "mx-auto mt-2"
+          }
+        >
+          {text}
+        </p>
       </div>
     </div>
   );

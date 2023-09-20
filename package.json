@@ -30,6 +30,7 @@
     "react-date-object": "^2.1.7",
     "react-dom": "^18.2.0",
     "react-hydration-provider": "^2.0.0",
+    "react-responsive-carousel": "^3.2.23",
     "tailwind-merge": "^1.14.0"
   },
   "devDependencies": {
