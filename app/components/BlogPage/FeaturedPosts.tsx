@@ -7,7 +7,7 @@ interface Props {
 }
 const FeaturedPosts = ({ data }: Props) => {
   return (
-    <div className=" gap-6 md:grid md:grid-cols-2 lg:block lg:[&>*:not(:first-of-type)]:flex">
+    <div className=" gap-6 md:grid md:grid-cols-2 lg:block lg:[&>*:not(:first-of-type)]:flex lg:[&>*:not(:last-child)]:mb-4">
       {data.map((post, index) =>
         post.featured ? (
           <Post

@@ -29,11 +29,14 @@ export default function PostArticle() {
           <h2 className="l g:mt-12  md:mt-8 lg:text-[29px]">
             Related Articles
           </h2>
-          <div className=" grid-cols-4  grid-rows-1 gap-6 lg:grid">
+          <div className="row-gap-4  gap-6 min-[320px]:grid min-[320px]:grid-cols-1 lg:grid lg:grid-cols-4 lg:grid-rows-1">
             {data.recentPosts.map((post) => (
-              <div className=" w-max-[288px] mt-4" key={post.id}>
-                <Post data={post} isMiniature={false} isFeatured={true} />
-              </div>
+              <Post
+                data={post}
+                isMiniature={false}
+                isFeatured={true}
+                key={post.id}
+              />
             ))}
           </div>
         </div>

@@ -23,7 +23,7 @@ const PostTag = ({ categoryName }: PostTagProps) => {
   };
 
   return (
-    <div>
+    <div className="mb-3">
       <p className={getIntentMargin(categoryName)}>
         {categoryName.charAt(0).toUpperCase() + categoryName.slice(1)}
       </p>

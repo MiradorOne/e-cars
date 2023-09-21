@@ -25,10 +25,10 @@ const Post = ({
   const { category } = useParams();
 
   return (
-    <div className="md:max-h rounded-lg shadow-3xl lg:mb-6">
+    <div className="md:max-h rounded-lg shadow-3xl">
       <img
         className={
-          isMiniature ? "rounded-t-lg lg:max-w-[160px]" : "rounded-t-lg"
+          isMiniature ? "rounded-t-lg lg:max-w-[160px]" : "w-full rounded-t-lg"
         }
         src={image.data}
         alt=""
