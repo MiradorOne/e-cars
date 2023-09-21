@@ -9,12 +9,10 @@ export const getAllCategories = async () =>
   });
 
 export const getAllPostsByCategory = async (
-  category: Prisma.PostCategoryWhereInput["name"],
-  count?: number
+  category: Prisma.PostCategoryWhereInput["name"]
 ) => {
   return prisma.post.findMany({
     where: { category: { name: category } },
-    take: count,
   });
 };
 

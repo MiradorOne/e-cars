@@ -27,8 +27,3 @@ export { default as TwitterHeader } from "./TwitterHeader";
 export { default as WhatsappBlack } from "./WhatsappBlack";
 export { default as WhatsAppHeader } from "./WhatsAppHeader";
 export { default as YoutubeHeader } from "./YoutubeHeader";
-export { default as LinkedInSvg } from "./LinkedInSvg";
-export { default as TagsSvg } from "./TagsSvg";
-export { default as ViewsSvg } from "./ViewsSvg";
-export { default as CopyLinkSvg } from "./CopyLinkSvg";
-export { default as CalendarSvg } from "./CalendarSvg";

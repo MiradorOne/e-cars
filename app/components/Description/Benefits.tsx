@@ -1,6 +1,8 @@
-import React, { ComponentPropsWithoutRef, JSX } from "react";
-import { cva, VariantProps } from "class-variance-authority";
-import { cn } from "~/utils/cn";
+import type { ComponentPropsWithoutRef, JSX } from "react";
+import React from "react";
+import type { VariantProps } from "class-variance-authority";
+import { cva } from "class-variance-authority";
+import { cn } from "~/utils";
 
 type Intent = "homepage" | "aboutUs" | "howItWorks";
 
@@ -60,7 +62,7 @@ const Benefits = ({
     <div className={cn(BenefitsVariant({ intent, className }))}>
       <div
         className={
-          'font-semibold" rounded-full bg-orange-mainOrange  p-4 text-lg leading-3'
+          'font-semibold" rounded-full bg-[#E49A49] p-4 text-lg leading-3'
         }
       >
         {children}
