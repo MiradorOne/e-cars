@@ -14,6 +14,7 @@ interface DescriptionProps
 const DescriptionVariant = cva("w-full flex justify-between ", {
   variants: {
     intent: {
+      //todo rename intents
       homepage: [
         "max-w-[1224px]",
         "justify-between",

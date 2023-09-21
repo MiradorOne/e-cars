@@ -1,11 +1,13 @@
 import React from "react";
-import { Layout } from "~/components/layout";
+
 import CreateArticle from "~/components/BlogPage/CreateArticle";
 
-export default function Index() {
+const CreateArticlePage = () => {
   return (
-    <Layout>
+    <div>
       <CreateArticle />
-    </Layout>
+    </div>
   );
-}
+};
+
+export default CreateArticlePage;

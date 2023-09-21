@@ -1,22 +1,13 @@
-import { Outlet, useLoaderData } from "@remix-run/react";
+import React from "react";
 import { json } from "@remix-run/node";
-import { Layout } from "~/components/layout";
-
-import { getAllPosts, getAllCategories } from "~/services/PostService";
+import { getAllPosts } from "~/services/PostService";
+import { useLoaderData } from "@remix-run/react";
+import BlogPage from "~/pages/BlogPage";
 
 export async function loader() {
-  return json({
-    posts: await getAllPosts(),
-    categories: await getAllCategories(),
-  });
+  return json(await getAllPosts());
 }
-
-export default function Blog() {
+export default function BlogCategory() {
   const data = useLoaderData<typeof loader>();
-  return (
-    <Layout>
-      Blog
-      <Outlet />
-    </Layout>
-  );
+  return <BlogPage posts={data} />;
 }
