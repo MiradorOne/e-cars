@@ -41,7 +41,7 @@ const Article = ({
   const { category } = useParams();
 
   return (
-    <div className="mx-auto my-0 w-full max-w-article ">
+    <div className=" mx-auto   my-0 w-full  max-w-[1224px] ">
       <h1 className="font-semibold min-[320px]:text-[34px] lg:text-[44px]">
         {title}
       </h1>
