@@ -1,13 +1,14 @@
-import { Outlet, useLoaderData } from "@remix-run/react";
+import React from "react";
+import BlogPage from "~/pages/BlogPage";
 import type { LoaderArgs } from "@remix-run/node";
-import { $Enums } from ".prisma/client";
 import { json } from "@remix-run/node";
-import { Layout } from "~/components/layout";
-
 import { getAllPostsByCategory } from "~/services/PostService";
+import { $Enums } from ".prisma/client";
+import { useLoaderData } from "@remix-run/react";
 
 export async function loader({ params }: LoaderArgs) {
   const { category } = params;
+
   if (!Object.values($Enums.CATEGORY).includes(category as $Enums.CATEGORY)) {
     throw new Response(null, {
       status: 404,
@@ -16,13 +17,8 @@ export async function loader({ params }: LoaderArgs) {
   }
   return json(await getAllPostsByCategory(category as $Enums.CATEGORY));
 }
-
-export default function Blog() {
+export default function BlogCategory() {
   const data = useLoaderData<typeof loader>();
-  return (
-    <Layout>
-      Blog Category
-      <Outlet />
-    </Layout>
-  );
+
+  return <BlogPage posts={data} />;
 }
