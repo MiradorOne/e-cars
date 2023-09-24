@@ -2,25 +2,24 @@ import { Layout } from "~/components/layout";
 import Article from "~/pages/Article";
 import type { LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import { getAllPostsByCategory, getPostById } from "~/services/PostService";
+import { getAllPosts, getPostById } from "~/services/PostService";
 import { useLoaderData } from "@remix-run/react";
 import React from "react";
-import { CATEGORY } from "@prisma/client";
 
 import Post from "~/components/BlogPage/Post";
 
 export async function loader({ params }: LoaderArgs) {
-  const { category, postId } = params;
-
+  const { postId } = params;
+  const postData = await getPostById(postId as string);
+  const recentPosts = await getAllPosts(4);
   return json({
-    postData: await getPostById(postId as string),
-    recentPosts: await getAllPostsByCategory(category as CATEGORY, 4),
+    postData,
+    recentPosts,
   });
 }
 
 export default function PostArticle() {
   const data = useLoaderData<typeof loader>();
-
   return (
     <Layout>
       <div className="mx-auto w-full max-w-[1224px]	min-[320px]:px-4 min-[320px]:py-8 md:px-8  md:py-10 lg:px-0  lg:pb-12">
@@ -30,7 +29,7 @@ export default function PostArticle() {
             Related Articles
           </h2>
           <div className="row-gap-4  gap-6 min-[320px]:grid min-[320px]:grid-cols-1 lg:grid lg:grid-cols-4 lg:grid-rows-1">
-            {data.recentPosts.map((post) => (
+            {data?.recentPosts.map((post) => (
               <Post
                 data={post}
                 isMiniature={false}
