@@ -4,6 +4,7 @@ import { useLoaderData, Outlet, Link } from "@remix-run/react";
 import type { CATEGORY } from "@prisma/client";
 import { getAllCategories } from "~/services/PostService";
 import { Layout } from "~/components/layout";
+
 export async function loader() {
   return json(await getAllCategories());
 }
@@ -29,7 +30,7 @@ export default function Blog() {
             >
               All
             </Link>
-            {data.map((category, index) => (
+            {data?.map((category, index) => (
               <Link
                 to={`${category.name}`}
                 key={index}

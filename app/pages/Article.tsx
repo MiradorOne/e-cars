@@ -33,7 +33,7 @@ const Article = ({
   body,
   createdAt,
   image,
-  tags,
+  tags = [],
   title,
   views,
 }: ArticleProps) => {
