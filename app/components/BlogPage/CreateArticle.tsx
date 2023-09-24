@@ -3,8 +3,13 @@ import { RootContext } from "~/root";
 import { useSubmit, Form } from "@remix-run/react";
 import { Editor } from "@tinymce/tinymce-react";
 import { Button } from "~/components/Button";
+import type { ZodIssue } from "zod";
 
-const CreateArticle = () => {
+interface Props {
+  errors: ZodIssue[];
+}
+
+const CreateArticle = ({ errors = [] }: Props) => {
   const { TINY_MCE_API_KEY } = useContext(RootContext);
   const editorImageInput = useRef<HTMLInputElement>(null);
   const postImageInput = useRef<HTMLInputElement>(null);

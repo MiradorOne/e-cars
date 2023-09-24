@@ -7,7 +7,7 @@ export const createPostInputSchema = z.object({
   tags: z.optional(z.array(z.string())),
   featured: z.optional(z.boolean()),
   category: z.nativeEnum($Enums.CATEGORY),
-  image: z.string().min(1),
+  image: z.string().min(1, { message: "Select an image" }),
 });
 
 export type CreatePostArgs = z.infer<typeof createPostInputSchema>;

@@ -5,6 +5,8 @@ import type { ActionArgs } from "@remix-run/node";
 import { createPost } from "~/services/PostService";
 import { redirect } from "@remix-run/node";
 import type { $Enums } from "@prisma/client";
+import { useActionData } from "@remix-run/react";
+import { ZodError } from "zod";
 
 export async function action({ request }: ActionArgs) {
   const formData = await request.formData();
@@ -30,13 +32,22 @@ export async function action({ request }: ActionArgs) {
     }
 
     return redirect(`/blog/post/${result.id}`);
-  } catch (e) {}
+  } catch (error) {
+    if (error instanceof ZodError) {
+      return error.issues;
+    }
+
+    throw new Response("Bad Request", {
+      status: 400,
+    });
+  }
 }
 
-export default function Blog_CreatePost() {
+export default function CreatePost() {
+  const errors = useActionData();
   return (
     <Layout>
-      <CreateArticle />
+      <CreateArticle errors={errors} />
     </Layout>
   );
 }
