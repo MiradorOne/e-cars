@@ -1,42 +1,86 @@
-import React, { useState } from "react";
-
+import React, { useState, useRef, useContext } from "react";
+import { RootContext } from "~/root";
+import { useSubmit, Form } from "@remix-run/react";
 import { Editor } from "@tinymce/tinymce-react";
 import { Button } from "~/components/Button";
+import type { ZodIssue } from "zod";
 
-const CreateArticle = () => {
-  const [text, setText] = useState("");
-  const [value, setValue] = useState("");
-  const [articleName, setArticleName] = useState("");
-  const [articleImage, setArticleImage] = useState({});
+interface Props {
+  errors: ZodIssue[];
+}
 
-  const setArticleNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setArticleName(e.target.value);
+const CreateArticle = ({ errors = [] }: Props) => {
+  const { TINY_MCE_API_KEY } = useContext(RootContext);
+  const editorImageInput = useRef<HTMLInputElement>(null);
+  const postImageInput = useRef<HTMLInputElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+  const [body, setBody] = useState("");
+  const [articleImage, setArticleImage] = useState("");
+  const submit = useSubmit();
+
+  type FilePickerCallback = (
+    callback: (value: string, meta?: Record<string, any>) => void,
+    value: string,
+    meta: Record<string, any>
+  ) => void;
+  const fileReaderCallback: FilePickerCallback = (callback, _value, meta) => {
+    if (meta.filetype === "image") {
+      if (editorImageInput.current) {
+        editorImageInput.current.click();
+
+        editorImageInput.current.onchange = function () {
+          if (editorImageInput?.current?.files) {
+            const file = editorImageInput.current.files[0];
+            const reader = new FileReader();
+            reader.onload = function (e) {
+              callback(e.target!.result! as string, {
+                alt: file.name,
+              });
+            };
+            reader.readAsDataURL(file);
+          }
+        };
+      }
+    }
   };
-  const createArticleHandler = () => {
-    return {
-      title: articleName,
-      body: text,
-      createdAt: new Date(),
-      image: {
-        type: null,
-        data: articleImage,
-      },
+
+  const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const reader = new FileReader();
+
+    if (e.target.files) {
+      reader.readAsDataURL(e.target.files[0]);
+    } else {
+      return;
+    }
+
+    reader.onload = () => {
+      setArticleImage(reader.result as string);
     };
   };
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+    formData.set("postImage", articleImage);
+    submit(formData, {
+      method: "post",
+    });
+  };
   return (
-    <>
-      <form className="flex items-center justify-between">
+    <div className="container mx-auto flex min-h-screen flex-col content-center justify-center">
+      <Form ref={formRef} className="" method="post" onSubmit={handleSubmit}>
         <input
           type="text"
+          name="postTitle"
           placeholder="Please enter the name of your article"
-          className="mb-2  w-5/12"
-          onChange={setArticleNameHandler}
+          className="mb-2 w-5/12"
+          // onChange={setArticleNameHandler}
         />
         <div className="flex items-center">
-          <label htmlFor="pet-select">Choose your category: </label>
+          <label htmlFor="category">Choose your category:</label>
 
-          <select name="categories" className="ml-2">
+          <select name="category" className="ml-2">
             <option selected value="review">
               Review
             </option>
@@ -47,59 +91,51 @@ const CreateArticle = () => {
           </select>
         </div>
         <div>
-          <label htmlFor="vehicle1">Should your article be featured?</label>
+          <label>Should your article be featured?</label>
           <input
             type="checkbox"
-            id="isFeatured"
-            name="isFeatured"
-            value="true"
+            name="featured"
+            defaultValue="false"
             className="ml-2"
           />
         </div>
-      </form>
-      <input id="my-file" type="file" name="my-file" className="hidden" />
-      <Editor
-        apiKey="8p6bsh1xotb95og1gywoydi84227tp147zdrj7u83d3tv6ne"
-        init={{
-          branding: false,
-          height: 400,
-          menubar: true,
-          plugins:
-            "preview  searchreplace autolink directionality visualblocks visualchars fullscreen image link media template code codesample table charmap pagebreak nonbreaking anchor  insertdatetime advlist lists wordcount ",
-          toolbar:
-            "formatselect | bold italic underline strikethrough | forecolor backcolor blockquote | link image media | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | removeformat",
-          image_advtab: true,
-          images_file_types: "jpg,svg,webp",
-          file_picker_types: "file image media",
-          file_browser_callback_types: "image",
-          file_picker_callback: function (callback, value, meta) {
-            if (meta.filetype == "image") {
-              const input = document.getElementById("my-file");
-              input.click();
-              input.onchange = function () {
-                var file = input.files[0];
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                  setArticleImage(e.target.result);
-                  console.log("name", e.target.result);
-                  callback(e.target.result, {
-                    alt: file.name,
-                  });
-                };
-                reader.readAsDataURL(file);
-              };
-            }
-          },
-          paste_data_images: true,
-        }}
-        onEditorChange={(newValue, editor) => {
-          setValue(newValue);
-          setText(editor.getContent({ format: "text" }));
-          console.log("value", value);
-        }}
-      />
-      <Button className="mt-2">Post an Article</Button>
-    </>
+        <div>
+          <label>Choose Post Image</label>
+          <input
+            type="file"
+            name="postImage"
+            ref={postImageInput}
+            onChange={handleImageSelect}
+          />
+        </div>
+        <input ref={editorImageInput} type="file" className="hidden" readOnly />
+        <input name="editorBody" className="hidden" value={body} />
+        <Editor
+          apiKey={TINY_MCE_API_KEY}
+          init={{
+            branding: false,
+            height: "50vh",
+            menubar: true,
+            plugins:
+              "preview  searchreplace autolink directionality visualblocks visualchars fullscreen image link media template code codesample table charmap pagebreak nonbreaking anchor  insertdatetime advlist lists wordcount ",
+            toolbar:
+              "formatselect | bold italic underline strikethrough | forecolor backcolor blockquote | link image media | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | removeformat",
+            image_advtab: true,
+            images_file_types: "jpg,svg,webp",
+            file_picker_types: "file image media",
+            file_browser_callback_types: "image",
+            file_picker_callback: fileReaderCallback,
+            paste_data_images: true,
+          }}
+          onEditorChange={(newValue, _editor) => {
+            setBody(newValue);
+          }}
+        />
+        <Button className="mt-8" type="submit">
+          Post an Article
+        </Button>
+      </Form>
+    </div>
   );
 };
 
