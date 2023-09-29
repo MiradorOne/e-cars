@@ -3,6 +3,8 @@ import { prisma } from "~/utils/prisma.server";
 import type { CreatePostArgs } from "~/services/PostService/schemas";
 import { createPostInputSchema } from "~/services/PostService/schemas";
 
+export const getAllPostsCount = async () => await prisma.post.count();
+
 export const getAllPosts = async (limit = 20, page = 0) =>
   await prisma.post.findMany({
     take: limit,
