@@ -23,6 +23,7 @@ const BenefitsVariant = cva("flex text-sm  md:mt-0 items-center ", {
       ],
       aboutUs: [
         "flex-col",
+        "text-base",
         "text-center",
         "max-w-[30%]",
         "flex",
@@ -31,7 +32,13 @@ const BenefitsVariant = cva("flex text-sm  md:mt-0 items-center ", {
         "min-[320px]:max-w-full",
         "md:max-w-[30%]",
       ],
-      howItWorks: ["min-[320px]:mt-6", "flex-col", "text-center", "w-10/12"],
+      howItWorks: [
+        "min-[320px]:mt-6",
+        "flex-col",
+        "text-center",
+        "w-10/12",
+        "text-lg",
+      ],
     },
   },
 });
