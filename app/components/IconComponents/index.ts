@@ -38,5 +38,4 @@ export { default as CanadaSvg } from "./CanadaSvg";
 export { default as Cross } from "./Cross";
 export { default as GoogleIconSvg } from "./GoogleIconSvg";
 export { default as LeftArrow } from "./LeftArrow";
-export { default as CanadaSvg } from "./CanadaSvg";
 export { default as SvgArrowLeft } from "./SvgArrowLeft";
