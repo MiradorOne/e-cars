@@ -14,7 +14,7 @@ const Phone = ({ className, fill, fillOpacity }: Props) => {
         fill={fill}
         fillOpacity={fillOpacity}
       />
-      <p>+971 55 811 9024</p>
+      <a href="tel:555-666-7777">555-666-7777</a>
     </div>
   );
 };

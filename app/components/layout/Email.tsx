@@ -14,7 +14,7 @@ const Email = ({ className, fill, fillOpacity }: Props) => {
         fill={fill}
         fillOpacity={fillOpacity}
       />
-      <p>request@example.com</p>
+      <a href="mailto:request@example.com">request@example.com</a>
     </div>
   );
 };
