@@ -32,7 +32,7 @@ const TopBar = () => {
         <HamburgerMenu />
         <section>
           <div className="flex h-[36px] items-center bg-stone-900 text-xs text-white/[0.7]">
-            <div className="my mx-auto flex w-full max-w-[1224px] items-center justify-between min-[320px]:px-4 md:px-8 lg:px-0">
+            <div className="my mx-auto flex w-full max-w-[1224px] items-center justify-between min-[320px]:px-4 md:px-8 lg:px-4 min-[1256px]:px-0">
               <div className="flex items-center">
                 <Socials
                   intent="mr-[16px]"
@@ -56,15 +56,15 @@ const TopBar = () => {
                   className="min-[320px]:hidden md:flex"
                   isBurger={false}
                 />
-                <div className="flex items-center">
-                  <SvgHelpHeader className="mr-1.5" />
+                <div className="flex cursor-pointer items-center">
+                  <SvgHelpHeader className="mr-1.5 " />
                   <p>Help</p>
                 </div>
               </div>
             </div>
           </div>
-          <div className="flex w-full items-center min-[320px]:h-[56px] md:h-[60px]">
-            <div className="mx-auto flex w-full max-w-[1224px] items-center justify-between min-[320px]:px-4 md:px-8 lg:px-0">
+          <div className="  flex w-full items-center border-b border-solid border-b-[rgba(230,230,230,1)]  min-[320px]:h-[56px] md:h-[60px]">
+            <div className="mx-auto flex w-full max-w-[1224px]  items-center justify-between min-[320px]:px-4 md:px-8 lg:px-4 min-[1256px]:px-0  ">
               <div className="flex items-center">
                 <BurgerMenu
                   className="mr-4 min-[320px]:block lg:hidden"
@@ -79,8 +79,8 @@ const TopBar = () => {
                 />
               </div>
               <div className="flex items-center">
-                <SvgSearchHeader className="mr-4" />
-                <SvgLikeHeader className="mr-4 min-[320px]:hidden md:block" />
+                <SvgSearchHeader className="mr-4 cursor-pointer" />
+                <SvgLikeHeader className="mr-4 cursor-pointer min-[320px]:hidden md:block" />
                 <Link to={"/login"}>
                   <SvgProfileHeader className="mr-4 min-[320px]:hidden md:block" />
                 </Link>

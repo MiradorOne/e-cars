@@ -14,7 +14,6 @@ const HamburgerMenu = () => {
   const context = useContext(MenuContext);
   const toggleHamburger = () => {
     context?.setHamburgerOpen(!context?.hamburgerOpen);
-    console.log(context?.hamburgerOpen);
   };
   useEffect(() => {
     if (context?.hamburgerOpen) {
@@ -26,10 +25,10 @@ const HamburgerMenu = () => {
 
   return (
     <div
-      className={`absolute flex flex-col justify-between bg-white transition-all min-[320px]:left-[-105%] min-[320px]:h-screen min-[320px]:w-screen min-[320px]:px-4 min-[320px]:pb-6 min-[320px]:pt-[44px] md:left-[-360px] md:w-full md:max-w-[360px] md:px-8 md:pb-8 md:pt-[50px] ${
+      className={`absolute flex flex-col justify-between bg-white  transition-all min-[320px]:left-[-105%] min-[320px]:h-screen min-[320px]:w-screen min-[320px]:px-4 min-[320px]:pb-6 min-[320px]:pt-[44px] md:left-[-360px] md:w-full md:max-w-[360px] md:px-8 md:pb-8 md:pt-[50px] ${
         context?.hamburgerOpen
-          ? "min-[320px]:translate-x-[105%] md:translate-x-[360px]"
-          : ""
+          ? "visible transition-all min-[320px]:translate-x-[105%] md:translate-x-[360px] "
+          : "invisible "
       }`}
     >
       <div>
