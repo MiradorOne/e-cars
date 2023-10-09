@@ -3,6 +3,7 @@ import { Link, useParams } from "@remix-run/react";
 import type { Prisma } from "@prisma/client";
 import { BlogContext } from "~/routes/blog";
 import PostTag from "~/components/BlogPage/PostTag";
+import { HomePageContext } from "~/routes/_index";
 
 interface PostProps extends Prisma.PostCreateInput {
   categoryId?: string;
@@ -22,10 +23,16 @@ const Post = ({
   data: PostProps;
 }) => {
   let currentCategory;
-  const categories = useContext(BlogContext);
-
+  let categories = useContext(BlogContext);
+  if (categories.length === 0) {
+    categories = useContext(HomePageContext);
+  }
   currentCategory = categories.find((category) => category.id === categoryId);
-
+  const clearHTMLTags = (strToSanitize: string) => {
+    return strToSanitize.replace(/(<([^>]+)>)/gi, "");
+  };
+  const textWithoutTags = clearHTMLTags(body);
+  const text = textWithoutTags.substring(0, 90) + "...";
   const { category } = useParams();
   const getImageHeight = (maxHeight: string | undefined) => {
     switch (maxHeight) {
@@ -73,7 +80,7 @@ const Post = ({
             {title}
           </h2>
         </Link>
-        {!isFeatured ? <p>{body}</p> : null}
+        {!isFeatured ? <p className="break-all text-sm">{text}</p> : null}
       </div>
     </div>
   );
