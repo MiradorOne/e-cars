@@ -10,10 +10,10 @@ const LoginPage = () => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const onChangeLoginHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
+    setLogin(e.target.value);
   };
   const onChangePasswordHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
+    setPassword(e.target.value);
   };
   return (
     <>
@@ -36,7 +36,7 @@ const LoginPage = () => {
             </Link>
           }
         />
-        <Button intent="primary" width="full" size="medium">
+        <Button intent="primary" width="full" size="medium" className="mt-6">
           Login
         </Button>
       </form>

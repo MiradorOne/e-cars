@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Heading from "~/components/Heading";
 import FormInput from "~/components/Authorization/FormInput";
 import { Button } from "~/components/Button";
-
 const SignUpPage = () => {
   const [errorMessages, setErrorMessages] = useState({});
   const [login, setLogin] = useState("");
@@ -11,19 +10,13 @@ const SignUpPage = () => {
   const [isPasswordsSame, setIsThePasswordsSame] = useState(true);
   const [isPasswordShort, setIsPasswordShort] = useState(false);
 
-  const onChangeNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
-  };
-  const onChangeEmailHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
-  };
+  const onChangeNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {};
+  const onChangeEmailHandler = (e: React.ChangeEvent<HTMLInputElement>) => {};
   const onChangePasswordHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
     if (password.length >= 7) {
       setIsPasswordShort(false);
     }
-    console.log(password);
-    console.log(isPasswordShort);
   };
   const onChangePasswordConfirmHandler = (
     e: React.ChangeEvent<HTMLInputElement>
@@ -81,7 +74,7 @@ const SignUpPage = () => {
             The passwords don't match
           </span>
         )}
-        <div className="mb-6 mt-6">
+        <div className=" mt-6">
           <input type="checkbox" name="policy" />
           <label htmlFor="policy" className=" ml-2 mt-6  text-sm">
             I agree to the
@@ -90,6 +83,7 @@ const SignUpPage = () => {
           </label>
         </div>
         <Button
+          className="mt-6"
           intent="primary"
           width="full"
           size="medium"

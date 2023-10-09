@@ -1,14 +1,12 @@
 import React from "react";
+import { Link } from "@remix-run/react";
 import Heading from "~/components/Heading";
 import FormInput from "~/components/Authorization/FormInput";
 import { Button } from "~/components/Button";
-import { LeftArrowSvg } from "~/components/IconComponents";
-import { Link } from "@remix-run/react";
+import { LeftArrow } from "~/components/IconComponents";
 
 const ForgotPage = () => {
-  const onChangeEmailHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
-  };
+  const onChangeEmailHandler = (e: React.ChangeEvent<HTMLInputElement>) => {};
   return (
     <>
       <Heading intent="maxsize32">Forgot password</Heading>
@@ -23,7 +21,7 @@ const ForgotPage = () => {
         Reset password
       </Button>
       <p className=" mt-6 flex items-center justify-center text-green-800">
-        <LeftArrowSvg />
+        <LeftArrow fill="#3C7D46" />
         <Link to={"/login"} className="ml-1">
           Back to login
         </Link>
