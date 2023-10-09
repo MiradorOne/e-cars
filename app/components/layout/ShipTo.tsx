@@ -11,7 +11,6 @@ const ShipTo = ({ className, isBurger }: Props) => {
   return (
     <div className={`mr-6 flex items-center ${className}`}>
       {isBurger ? null : <SvgGeoHeader className="mr-1.5" />}
-
       <label htmlFor="ship-select ">Ship to:</label>
       <CanadaSvg className="ml-1.5" />
       <select

@@ -12,21 +12,36 @@ interface Props {
   fillOpacity?: string;
 }
 const Socials = ({ intent, className, fill, fillOpacity }: Props) => {
-  console.log(intent);
   return (
     <div className={`flex items-center ${className}`}>
-      <FacebookHeader
-        className={intent}
-        fill={fill}
-        fillOpacity={fillOpacity}
-      />
-      <TwitterHeader className={intent} fill={fill} fillOpacity={fillOpacity} />
-      <YoutubeHeader className={intent} fill={fill} fillOpacity={fillOpacity} />
-      <InstagramHeader
-        className={intent}
-        fill={fill}
-        fillOpacity={fillOpacity}
-      />
+      <a href="">
+        <FacebookHeader
+          className={intent}
+          fill={fill}
+          fillOpacity={fillOpacity}
+        />
+      </a>
+      <a href="">
+        <TwitterHeader
+          className={intent}
+          fill={fill}
+          fillOpacity={fillOpacity}
+        />
+      </a>
+      <a href="">
+        <YoutubeHeader
+          className={intent}
+          fill={fill}
+          fillOpacity={fillOpacity}
+        />
+      </a>
+      <a href="">
+        <InstagramHeader
+          className={intent}
+          fill={fill}
+          fillOpacity={fillOpacity}
+        />
+      </a>
     </div>
   );
 };
