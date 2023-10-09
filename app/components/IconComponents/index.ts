@@ -36,3 +36,7 @@ export { default as CanadaSvg } from "./CanadaSvg";
 export { default as GoogleIconSvg } from "./GoogleIconSvg";
 export { default as LeftArrow } from "./LeftArrow";
 export { default as SvgArrowLeft } from "./SvgArrowLeft";
+export { default as LeftCheckMark } from "./LeftCheckMark";
+export { default as RightCheckMark } from "./RightCheckMark";
+export { default as CheckMarkDown } from "./CheckMarkDown";
+export { default as RightArrow } from "./RightArrow";

@@ -39,7 +39,7 @@ const ButtonVariants = cva(" text-center font-semibold duration-300", {
     },
     size: {
       small: ["py-1.5", "text-sm", "px-3"],
-      medium: ["py-3", "text-base"],
+      medium: ["py-3", "text-base px-6"],
     },
     secondaryRadius: {
       top: "rounded-t-lg",
