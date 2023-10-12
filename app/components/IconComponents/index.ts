@@ -32,3 +32,5 @@ export { default as TagsSvg } from "./TagsSvg";
 export { default as ViewsSvg } from "./ViewsSvg";
 export { default as CopyLinkSvg } from "./CopyLinkSvg";
 export { default as CalendarSvg } from "./CalendarSvg";
+export { default as GoogleIconSvg } from "./GoogleIconSvg";
+export { default as LeftArrow } from "./LeftArrow";

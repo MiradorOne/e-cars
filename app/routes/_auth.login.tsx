@@ -1,9 +1,10 @@
 import LoginPage from "~/pages/LoginPage";
+import AuthorizationWrapper from "~/components/Authorization/AuthorizationWrapper";
 
 export default function Login() {
   return (
     <div>
-      <LoginPage />
+      <AuthorizationWrapper children={<LoginPage />} />
     </div>
   );
 }
