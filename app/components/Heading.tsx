@@ -20,6 +20,12 @@ const HeadingVariants = cva("font-semibold", {
         "min-[320px]:text-[26px]",
         "min-[320px]:leading-7",
       ],
+      maxsize22: [
+        "lg:text-[22px]",
+        "min-[320px]:text-[19px]",
+        "lg:leading-7",
+        "min-[320px]:leading-6",
+      ],
     },
   },
   defaultVariants: {

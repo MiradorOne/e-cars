@@ -2,6 +2,10 @@ module.exports = {
   content: ["./app/**/*.{ts,tsx,jsx,js}"],
   theme: {
     extend: {
+      backgroundImage: {
+        'homepage': "url('../app/Assets/homepageImg.png')",
+        'homepageMobile': "url('../app/Assets/homepagemobile.png')"
+      },
       screens: {
         "2xl": "1440px",
       },
