@@ -21,7 +21,8 @@ module.exports = {
         '108px':"108px"
       },
       gridTemplateColumns:{
-        "blog": "minmax(320px, 704px) minmax(320px, 392px)"
+        "blog": "minmax(320px, 704px) minmax(320px, 392px)",
+        "details": "minmax(320px, 808px) minmax(320px, 392px)"
       },
       gridTemplateRows:{
         "featuredBlog": ""

@@ -10,7 +10,7 @@ const SvgFeaturesCheckMark = (props: SVGProps<SVGSVGElement>) => (
     {...props}
   >
     <path
-      fill="#767676"
+      fill={props.fill}
       fillRule="evenodd"
       d="M11.63.224a1 1 0 0 1 .146 1.407l-6.5 8a1 1 0 0 1-1.529.028l-3.5-4a1 1 0 1 1 1.506-1.317l2.719 3.107L10.224.37A1 1 0 0 1 11.63.224Z"
       clipRule="evenodd"
