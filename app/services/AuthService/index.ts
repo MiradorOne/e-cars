@@ -7,7 +7,7 @@ import {
   compareUserPassword,
   getUserIdByLogin,
 } from "~/services/UserService";
-import { storage } from "~/services/SessionStorage";
+import { getUserSession, storage } from "~/services/SessionStorage";
 
 export async function createUserSession(userId: string, redirectTo: string) {
   const session = await storage.getSession();
@@ -48,7 +48,18 @@ export const signIn = async (login: string, password: string) => {
   if (!credentialsMatch) {
     return json({ error: `Incorrect login` }, { status: 400 });
   }
+
   const user = await getUserIdByLogin(login);
   if (!user) return json({ error: `Cannot find user` }, { status: 400 });
+
   return createUserSession(user.id, "/");
 };
+
+export async function logout(request: Request) {
+  const session = await getUserSession(request);
+  return redirect("/login", {
+    headers: {
+      "Set-Cookie": await storage.destroySession(session),
+    },
+  });
+}

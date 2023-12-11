@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { Link } from "@remix-run/react";
 import Socials from "~/components/layout/Socials";
 import SvgHelpHeader from "~/components/IconComponents/HelpHeader";
@@ -14,6 +14,7 @@ import SvgProfileHeader from "~/components/IconComponents/ProfileHeader";
 import { Button } from "~/components/Button";
 import BurgerMenu from "~/components/IconComponents/BurgerMenu";
 import HamburgerMenu from "~/components/layout/HamburgerMenu";
+import { AuthUserContext } from "~/routes/_index";
 
 type MenuContextType = {
   hamburgerOpen: boolean;
@@ -26,6 +27,7 @@ const TopBar = () => {
   const toggleHamburger = () => {
     setHamburgerOpen(!hamburgerOpen);
   };
+  const userData = useContext(AuthUserContext);
   return (
     <>
       <MenuContext.Provider value={{ hamburgerOpen, setHamburgerOpen }}>

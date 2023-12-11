@@ -20,4 +20,8 @@ const storage = createCookieSessionStorage({
   },
 });
 
-export { storage };
+function getUserSession(request: Request) {
+  return storage.getSession(request.headers.get("Cookie"));
+}
+
+export { storage, getUserSession };
