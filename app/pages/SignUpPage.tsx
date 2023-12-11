@@ -1,17 +1,15 @@
 import React, { useState } from "react";
+import { Form } from "@remix-run/react";
 import Heading from "~/components/Heading";
 import FormInput from "~/components/Authorization/FormInput";
 import { Button } from "~/components/Button";
+
 const SignUpPage = () => {
-  const [errorMessages, setErrorMessages] = useState({});
-  const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isPasswordsSame, setIsThePasswordsSame] = useState(true);
   const [isPasswordShort, setIsPasswordShort] = useState(false);
 
-  const onChangeNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {};
-  const onChangeEmailHandler = (e: React.ChangeEvent<HTMLInputElement>) => {};
   const onChangePasswordHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
     if (password.length >= 7) {
@@ -36,24 +34,28 @@ const SignUpPage = () => {
   return (
     <>
       <Heading className="min-[320px]:mb-6 lg:mb-8">Sign Up</Heading>
-      <form>
+      <Form method="post">
         <FormInput
           placeholder="John Doe"
-          onInput={onChangeNameHandler}
+          required
           label="Full name"
           type="text"
+          name="fullName"
         />
         <FormInput
           placeholder="Your email"
-          onInput={onChangeEmailHandler}
           label="Email address"
+          required
           type="email"
+          name="email"
         />
         <FormInput
           placeholder="Your password"
           onInput={onChangePasswordHandler}
           label="Password"
+          required
           type="password"
+          name="password"
         />
         <span
           className={
@@ -75,7 +77,7 @@ const SignUpPage = () => {
           </span>
         )}
         <div className=" mt-6">
-          <input type="checkbox" name="policy" />
+          <input type="checkbox" required name="policy" />
           <label htmlFor="policy" className=" ml-2 mt-6  text-sm">
             I agree to the
             <span className="text-green-800"> Terms of Service</span> and
@@ -87,12 +89,12 @@ const SignUpPage = () => {
           intent="primary"
           width="full"
           size="medium"
-          type="button"
+          type="submit"
           onClick={createUserHandler}
         >
           Sign Up
         </Button>
-      </form>
+      </Form>
     </>
   );
 };

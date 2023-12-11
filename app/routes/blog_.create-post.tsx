@@ -1,7 +1,7 @@
 import React from "react";
 import { ZodError } from "zod";
 import { useActionData } from "@remix-run/react";
-import { redirect } from "@remix-run/node";
+import { json, redirect } from "@remix-run/node";
 import type { $Enums } from "@prisma/client";
 import type { ActionArgs } from "@remix-run/node";
 import { createPost } from "~/services/PostService";
@@ -34,7 +34,7 @@ export async function action({ request }: ActionArgs) {
     return redirect(`/blog/post/${result.id}`);
   } catch (error) {
     if (error instanceof ZodError) {
-      return error.issues;
+      return json({ error: error.issues }, { status: 400 });
     }
 
     throw new Response("Bad Request", {
