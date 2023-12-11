@@ -5,8 +5,13 @@ import { json, redirect } from "@remix-run/node";
 import type { $Enums } from "@prisma/client";
 import type { ActionArgs } from "@remix-run/node";
 import { createPost } from "~/services/PostService";
+import { requireUserId } from "~/services/UserService";
 import { Layout } from "~/components/layout";
 import CreateArticle from "~/components/BlogPage/CreateArticle";
+
+export async function loader({ request }: ActionArgs) {
+  return await requireUserId(request);
+}
 
 export async function action({ request }: ActionArgs) {
   const formData = await request.formData();
