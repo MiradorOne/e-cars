@@ -4,6 +4,7 @@ import type { ActionArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { register } from "~/services/AuthService";
 import { ZodError } from "zod";
+import { useActionData } from "@remix-run/react";
 
 export async function action({ request }: ActionArgs) {
   const formData = await request.formData();
@@ -24,5 +25,7 @@ export async function action({ request }: ActionArgs) {
 }
 
 export default function SignUp() {
-  return <AuthorizationWrapper children={<SignUpPage />} />;
+  const errors = useActionData();
+
+  return <AuthorizationWrapper children={<SignUpPage errors={errors} />} />;
 }

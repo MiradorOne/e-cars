@@ -4,19 +4,30 @@ import { Form, Link } from "@remix-run/react";
 import { Button } from "~/components/Button";
 import GoogleAuth from "~/components/Authorization/GoogleAuth";
 import Heading from "~/components/Heading";
+import { toast, Toaster } from "react-hot-toast";
 
-const LoginPage = () => {
+interface Props {
+  errors: any;
+}
+const LoginPage = ({ errors = [] }: Props) => {
+  if (errors && !Array.isArray(errors)) {
+    toast.error(errors.error, { id: "error1" });
+  }
+
   return (
     <>
+      <Toaster />
       <Heading className="min-[320px]:mb-6 lg:mb-8">Login</Heading>
       <Form method="post">
         <FormInput
+          required
           placeholder="Your email"
           label="Email address"
           type="email"
           name="login"
         />
         <FormInput
+          required
           placeholder="Your password"
           label="Password"
           type="password"

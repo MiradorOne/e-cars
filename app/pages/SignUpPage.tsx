@@ -4,11 +4,19 @@ import Heading from "~/components/Heading";
 import FormInput from "~/components/Authorization/FormInput";
 import { Button } from "~/components/Button";
 
-const SignUpPage = () => {
+import { toast, Toaster } from "react-hot-toast";
+interface Props {
+  errors: any;
+}
+const SignUpPage = ({ errors = [] }: Props) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isPasswordsSame, setIsThePasswordsSame] = useState(true);
   const [isPasswordShort, setIsPasswordShort] = useState(false);
+
+  if (errors && !Array.isArray(errors)) {
+    toast.error(errors.error, { id: "error2" });
+  }
 
   const onChangePasswordHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
@@ -31,8 +39,10 @@ const SignUpPage = () => {
       setIsPasswordShort(true);
     }
   };
+
   return (
     <>
+      <Toaster />
       <Heading className="min-[320px]:mb-6 lg:mb-8">Sign Up</Heading>
       <Form method="post">
         <FormInput

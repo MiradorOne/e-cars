@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
-import { Link } from "@remix-run/react";
+import { Form, Link } from "@remix-run/react";
 import Socials from "~/components/layout/Socials";
 import SvgHelpHeader from "~/components/IconComponents/HelpHeader";
 import Phone from "~/components/layout/Phone";
@@ -14,7 +14,9 @@ import SvgProfileHeader from "~/components/IconComponents/ProfileHeader";
 import { Button } from "~/components/Button";
 import BurgerMenu from "~/components/IconComponents/BurgerMenu";
 import HamburgerMenu from "~/components/layout/HamburgerMenu";
-import { AuthUserContext } from "~/routes/_index";
+
+import LogoutIcon from "~/components/IconComponents/LogoutIcon";
+import { AuthUserContext } from "~/root";
 
 type MenuContextType = {
   hamburgerOpen: boolean;
@@ -27,7 +29,9 @@ const TopBar = () => {
   const toggleHamburger = () => {
     setHamburgerOpen(!hamburgerOpen);
   };
+
   const userData = useContext(AuthUserContext);
+  console.log(userData);
   return (
     <>
       <MenuContext.Provider value={{ hamburgerOpen, setHamburgerOpen }}>
@@ -65,8 +69,8 @@ const TopBar = () => {
               </div>
             </div>
           </div>
-          <div className="  flex w-full items-center border-b border-solid border-b-[rgba(230,230,230,1)]  min-[320px]:h-[56px] md:h-[60px]">
-            <div className="mx-auto flex w-full max-w-[1224px]  items-center justify-between min-[320px]:px-4 md:px-8 lg:px-4 min-[1256px]:px-0  ">
+          <div className="flex w-full items-center border-b border-solid border-b-[rgba(230,230,230,1)] min-[320px]:h-[56px] md:h-[60px]">
+            <div className="mx-auto flex w-full max-w-[1224px] items-center justify-between min-[320px]:px-4 md:px-8 lg:px-4 min-[1256px]:px-0  ">
               <div className="flex items-center">
                 <BurgerMenu
                   className="mr-4 min-[320px]:block lg:hidden"
@@ -83,9 +87,21 @@ const TopBar = () => {
               <div className="flex items-center">
                 <SvgSearchHeader className="mr-4 cursor-pointer" />
                 <SvgLikeHeader className="mr-4 cursor-pointer min-[320px]:hidden md:block" />
-                <Link to={"/login"}>
-                  <SvgProfileHeader className="mr-4 min-[320px]:hidden md:block" />
-                </Link>
+                {userData ? (
+                  <div className="hidden items-center md:flex">
+                    <p className="mr-2">{userData.fullName}</p>
+                    <Form action="logout" method="post">
+                      <button>
+                        <LogoutIcon />
+                      </button>
+                    </Form>
+                  </div>
+                ) : (
+                  <Link to={"/login"}>
+                    <SvgProfileHeader className="mr-4 min-[320px]:hidden md:block" />
+                  </Link>
+                )}
+
                 <Button intent="primary" size="small" className="md:ml-4">
                   Get a quote
                 </Button>

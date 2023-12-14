@@ -1,4 +1,5 @@
 import type { LinksFunction, MetaFunction } from "@remix-run/node";
+import { json, LoaderArgs } from "@remix-run/node";
 import { createContext } from "react";
 import {
   Links,
@@ -10,7 +11,8 @@ import {
   useLoaderData,
 } from "@remix-run/react";
 import styles from "./tailwind.css";
-import { json } from "@remix-run/node";
+import { $Enums } from "@prisma/client";
+import { getUser } from "~/services/UserService";
 
 export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
 
@@ -20,11 +22,12 @@ export const meta: MetaFunction = () => ({
   viewport: "width=device-width,initial-scale=1",
 });
 
-export async function loader() {
+export async function loader({ request }: LoaderArgs) {
   return json({
     ENV: {
       TINY_MCE_API_KEY: process.env.TINY_MCE_API_KEY,
     },
+    user: await getUser(request),
   });
 }
 
@@ -32,8 +35,16 @@ export const RootContext = createContext({
   TINY_MCE_API_KEY: "",
 });
 
+export const AuthUserContext = createContext<{
+  id: string;
+  email: string;
+  fullName: string;
+  role: $Enums.ROLE;
+} | null>(null);
+
 export default function App() {
   const data = useLoaderData();
+
   return (
     <html lang="en">
       <head>
@@ -46,10 +57,12 @@ export default function App() {
             TINY_MCE_API_KEY: data.ENV.TINY_MCE_API_KEY,
           }}
         >
-          <Outlet />
-          <ScrollRestoration />
-          <Scripts />
-          <LiveReload />
+          <AuthUserContext.Provider value={data.user}>
+            <Outlet />
+            <ScrollRestoration />
+            <Scripts />
+            <LiveReload />
+          </AuthUserContext.Provider>
         </RootContext.Provider>
       </body>
     </html>
