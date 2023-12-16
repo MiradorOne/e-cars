@@ -6,6 +6,9 @@ module.exports = {
         'homepage': "url('../app/Assets/homepageImg.png')",
         'homepageMobile': "url('../app/Assets/homepagemobile.png')"
       },
+      transitionProperty: {
+        'max-height': 'max-height'
+      },
       screens: {
         "2xl": "1440px",
       },
