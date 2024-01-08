@@ -70,7 +70,7 @@ const Footer = () => (
         </div>
       </div>
       <div className="block justify-between text-xs text-gray-500 min-[320px]:mt-6 md:mt-10 md:flex lg:mt-[60px]">
-        <p>eCars © 2022. All rights reserved.</p>
+        <p>eCars © {new Date().getFullYear()}. All rights reserved.</p>
         <div className="flex min-[320px]:mt-4 md:mt-0">
           <p className="mr-6 cursor-pointer">Privacy Policy</p>
           <p className="cursor-pointer">Terms & Conditions</p>

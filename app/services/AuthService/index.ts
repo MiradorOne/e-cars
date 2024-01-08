@@ -51,6 +51,7 @@ export const signIn = async (login: string, password: string) => {
 
   const user = await getUserIdByLogin(login);
   if (!user) return json({ error: `Cannot find user` }, { status: 400 });
+
   return createUserSession(user.id, "/");
 };
 
