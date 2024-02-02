@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import FilterSelect from "~/components/CatalogPage/Filter/FilterSelect";
 import FilterCheckbox from "~/components/CatalogPage/Filter/FilterCheckbox";
 import { ClientOnly } from "~/components/client-only";
@@ -6,52 +6,52 @@ import RangeFilter from "~/components/CatalogPage/Filter/RangeFilter";
 import MinMaxFilter from "~/components/CatalogPage/Filter/MinMaxFilter";
 import RightArrow from "~/components/IconComponents/RightArrow";
 import { Cross } from "~/components/IconComponents";
+import BrandSelect from "~/components/CatalogPage/Filter/BrandSelect";
+import { CatalogContext } from "~/pages/CatalogPage";
 
 interface Props {
   classname?: string;
+  setMobileFilterVisible?: () => void;
 }
 
-const Filter = ({ classname }: Props) => {
+const Filter = ({ classname, setMobileFilterVisible }: Props) => {
   const [isAddFiltersVisible, setVisible] = useState(false);
+  const context = useContext(CatalogContext);
 
   const onClickFiltersHandler = () => {
     setVisible(!isAddFiltersVisible);
   };
+
   return (
     <div
-      className={` relative	rounded-lg border border-solid border-[#E6E6E6] p-4 lg:mr-6 [&>*:not(:first-child)]:mt-3	${classname}`}
+      className={`relative border border-solid border-[#E6E6E6] p-4 lg:mr-6 lg:rounded-lg [&>*:not(:first-child)]:mt-3 ${classname}`}
     >
-      <div className="   flex w-auto  items-center justify-between bg-gray-200 p-4 lg:hidden">
-        <p className=" text-sm font-semibold">Filters</p>
-        <Cross className="cursor-pointer" onClick={onClickFiltersHandler} />
+      <div className="flex w-auto items-center justify-between bg-gray-200 p-4 lg:hidden">
+        <p className="text-sm font-semibold">Filters</p>
+        <Cross
+          className="cursor-pointer"
+          onClick={() =>
+            setMobileFilterVisible ? setMobileFilterVisible() : null
+          }
+        />
       </div>
-      <FilterSelect
-        placeholder="Select brand"
-        options={["BMW", "Fiat", "Nissan", "Hyundai", "BMW", "Fiat"]}
-        label="Make"
-        reset={true}
-      />
-      <FilterSelect
-        placeholder="All"
-        label="Model"
-        options={["Prado", "Land Cruiser", "FJ", "Corolla", "Camry"]}
-      />
+      <BrandSelect />
       <FilterCheckbox
         label="Vehicle type"
         options={[
-          "Vehicle",
-          "Vehicle",
-          "type",
-          "Vehicle type",
-          "Vehicle",
-          "Vehicle",
-          "type",
-          "Vehicle type",
-          "Vehicle type",
-          "Vehicle",
-          "Vehicle",
-          "type",
-          "Vehicle type",
+          "SUV/Crossover",
+          "Sedan",
+          "Pick Up Truck",
+          "Convertible",
+          "Coupe",
+          "Hatchback",
+          "option1",
+          "Hatchback1",
+          "Hatchback2",
+          "Hatchback3",
+          "Hatchback4",
+          "Hatchback5",
+          "Hatchback6",
         ]}
       />
       <ClientOnly
@@ -82,7 +82,7 @@ const Filter = ({ classname }: Props) => {
         placeholder="Select country"
         options={["USA", "Ukraine", "Canada", "Mexico", "Germany", "France"]}
         label="Country"
-        reset={true}
+        reset
       />
       <FilterCheckbox
         label="City"
@@ -131,11 +131,26 @@ const Filter = ({ classname }: Props) => {
           } ml-2 transition-all`}
         />
       </div>
-      <div className=" flex w-full   border-t border-solid border-gray-500 py-3 lg:hidden">
-        <button className="mr-2 rounded-lg bg-gray-100 px-3 py-1.5 text-gray-700">
+      <div className="flex w-full border-t border-solid border-gray-500 py-3 lg:hidden">
+        <button
+          disabled={context.criteria.length === 0}
+          onClick={() => context.setCriteria([])}
+          className={`${
+            context.criteria.length > 0
+              ? "bg-red-600 text-black"
+              : "bg-gray-100 text-red-700"
+          } mr-2 rounded-lg  px-3 py-1.5 `}
+        >
           <p>Reset</p>
         </button>
-        <button className="w-full rounded-lg bg-green-100 text-green-800">
+        <button
+          disabled={context.criteria.length === 0}
+          className={`${
+            context.criteria.length > 0
+              ? "bg-green-800 text-green-100"
+              : "bg-green-100 text-green-800"
+          } w-full rounded-lg bg-green-100 `}
+        >
           <p className="mx-auto w-fit py-1.5">Apply</p>
         </button>
       </div>
